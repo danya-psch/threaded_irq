@@ -39,13 +39,13 @@ static void button_gpio_deinit(void);
 static irqreturn_t button_handler(int irq, void *dev_id)
 {
 	__u32 *cntr = (__u32 *)dev_id;
-    ++(*cntr);
+	++(*cntr);
 	if (led_gpio) {
 		gpio_set_value(led_gpio, 0);
 		led_gpio = (led_gpio == LED_SD) ? LED_MMC : LED_SD; 
 		gpio_set_value(led_gpio, 1);
 	}
-    return IRQ_WAKE_THREAD;
+	return IRQ_WAKE_THREAD;
 }
 
 static irqreturn_t button_thread(int irq, void *dev_id)
@@ -54,7 +54,7 @@ static irqreturn_t button_thread(int irq, void *dev_id)
 	if (simulate_busy) 
 		msleep(EXEC_THREAD_TIME);
 	pr_info("counter: %d\n", cntr);
-    return IRQ_HANDLED;
+	return IRQ_HANDLED;
 }
 
 static int __init onboard_io_init(void)
@@ -70,18 +70,18 @@ static int __init onboard_io_init(void)
 
 	dir = debugfs_create_dir(KBUILD_MODNAME, NULL);
 	if (!dir) {
-        pr_err("Failed to create dir\n");
-        goto err_dir;
-    }
+		pr_err("Failed to create dir\n");
+		goto err_dir;
+	}
 	cntr = debugfs_create_u32("counter", 0444, dir, &counter);
 	if (!cntr) {
-        pr_err("Failed to create counter\n");
+		pr_err("Failed to create counter\n");
 		goto err_counter;
 	}
 
 	button_irq = gpio_to_irq(button_gpio);
 	rc = request_threaded_irq(button_irq, button_handler, button_thread,
-							  IRQF_TRIGGER_FALLING, "test", &counter);
+	                          IRQF_TRIGGER_FALLING, "test", &counter);
 
 	if (rc) {	
 		pr_err("Can't set threaded irq\n");
