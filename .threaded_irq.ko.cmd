@@ -1,0 +1,1 @@
+cmd_/home/danyil/projects/threaded_irq/threaded_irq.ko := ccache arm-eabi-ld -r  -EL -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/danyil/projects/threaded_irq/threaded_irq.ko /home/danyil/projects/threaded_irq/threaded_irq.o /home/danyil/projects/threaded_irq/threaded_irq.mod.o ;  true
