@@ -10,8 +10,7 @@
 #include <linux/delay.h>
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Oleksandr Redchuk (at GL training courses)");
-MODULE_DESCRIPTION("BBB Onboard IO Demo");
+MODULE_AUTHOR("Danyil Peschanskyi");
 MODULE_VERSION("0.1");
 
 #define GPIO_NUMBER(port, bit) (32 * (port) + (bit))
